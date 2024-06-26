@@ -5,6 +5,7 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from django.contrib import messages
 from .forms import SignUpForm, SignInForm
+from django.contrib.auth import logout
 from .models import Product
 
 def home(request):
@@ -39,3 +40,7 @@ def signin(request):
 def welcome(request):
     products = Product.objects.all()
     return render(request, 'welcome.html', {'products': products})
+
+def logout_view(request):
+    logout(request)
+    return redirect('home')

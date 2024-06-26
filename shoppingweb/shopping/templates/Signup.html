@@ -1,15 +1,90 @@
+<!-- shopping/templates/signup.html -->
 <!DOCTYPE html>
 <html>
 <head>
     <title>Sign Up</title>
+    <style>
+        body {
+            background-color: rgb(255, 255, 255);
+            color: white;
+        }
+        h2 {
+            color: red;
+        }
+        form {
+            margin: 0 auto;
+            width: 300px;
+            padding: 1em;
+            border: 1px solid #ccc;
+            border-radius: 1em;
+            background-color: #ed2020;
+        }
+        div + div {
+            margin-top: 1em;
+        }
+        label {
+            display: inline-block;
+            width: 90px;
+            text-align: right;
+        }
+        input, button {
+            font: 1em sans-serif;
+            width: 200px;
+            box-sizing: border-box;
+            border: 1px solid #999;
+        }
+        input:focus {
+            border-color: #000;
+        }
+        button {
+            padding: 0.7em;
+            color: #fff;
+            background-color: #007BFF;
+            border: none;
+            border-radius: 1em;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .signin-link {
+            display: block;
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 1em;
+            background-color: #ffffff;
+            text-align: center;
+            text-decoration: none;
+            color: #007BFF;
+        }
+    </style>
 </head>
-<body style="background-color: rgb(110, 106, 106);">
+<body>
     <h2>Sign Up</h2>
     <form method="post">
         {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Sign Up</button>
+        {{ form.non_field_errors }}
+        <div>
+            {{ form.username.label_tag }}
+            {{ form.username }}
+        </div>
+        <div>
+            {{ form.phone_number.label_tag }}
+            {{ form.phone_number }}
+        </div>
+        <div>
+            {{ form.password1.label_tag }}
+            {{ form.password1 }}
+        </div>
+        <div>
+            {{ form.password2.label_tag }}
+            {{ form.password2 }}
+        </div>
+        <div>
+            <button type="submit">Sign Up</button>
+        </div>
+        <a href="{% url 'signin' %}" class="signin-link">Already have an account? Sign In</a>
     </form>
-    <a href="{% url 'signin' %}">Already have an account? Sign In</a>
 </body>
 </html>
